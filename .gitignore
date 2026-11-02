@@ -117,5 +117,6 @@ run/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
-!libs/
-!libs/*.jar
+
+# 第三方依赖改用 CurseMaven，不提交 jar
+libs/

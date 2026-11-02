@@ -60,13 +60,18 @@ neoForge {
 }
 
 repositories {
-    maven { url = 'https://www.cursemaven.com' }
+    maven {
+        url = 'https://www.cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
 }
 
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
-    implementation files('libs/block_factorys_bosses-2.1.2-neo-1.21.1.jar')
-    implementation files('libs/geckolib-neoforge-1.21.1-4.9.2.jar')
+    implementation 'curse.maven:bossesrise-1314084:8123167'
+    implementation 'curse.maven:geckolib-388172:8350073'
 }
 
 tasks.named('processResources', ProcessResources).configure {
