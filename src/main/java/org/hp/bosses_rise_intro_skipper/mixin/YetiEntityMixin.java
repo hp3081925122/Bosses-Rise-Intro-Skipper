@@ -9,8 +9,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
+import net.unusual.block_factorys_bosses.attachment.entity.PlayerVariables;
 import net.unusual.block_factorys_bosses.entity.boss.AbstractBossEntity;
 import net.unusual.block_factorys_bosses.entity.boss.yeti.YetiEntity;
+import net.unusual.block_factorys_bosses.init.BossesRiseDataAttachments;
+import org.hp.bosses_rise_intro_skipper.BossesRiseIntroSkipper;
 import org.hp.bosses_rise_intro_skipper.Config;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -54,7 +57,7 @@ public class YetiEntityMixin {
         }
 
         AbstractBossEntity.State state = yeti.getState();
-        if (enrageState < 2 && state != null && "IDLE".equals(state.name())) {
+        if (enrageState == 1 && state != null && "IDLE".equals(state.name())) {
             bossesRiseIntroSkipper$finishIntroWithoutAnimation();
         }
 
@@ -105,9 +108,25 @@ public class YetiEntityMixin {
         int enrageState = entityData.get(DATA_IS_ENRAGED);
         if (enrageState < 2) {
             bossesRiseIntroSkipper$clearIntroIce();
+            bossesRiseIntroSkipper$resetBossNoHit();
             entityData.set(DATA_IS_ENRAGED, 2);
             ((AbstractBossEntity) (Object) this).setBarVisible(true);
         }
+    }
+
+    @Unique
+    private void bossesRiseIntroSkipper$resetBossNoHit() {
+        YetiEntity yeti = (YetiEntity) (Object) this;
+        if (!(yeti.level() instanceof ServerLevel)) {
+            return;
+        }
+
+        yeti.forEachNearbyPlayer(32.0, player -> {
+            PlayerVariables playerVars = player.getData(BossesRiseDataAttachments.PLAYER_VARIABLES);
+            playerVars.boss_no_hit = true;
+            playerVars.syncPlayerVariables(player);
+        });
+        BossesRiseIntroSkipper.LOGGER.debug("Skipped yeti intro for entity {}, reset boss no-hit for nearby players", yeti.getId());
     }
 
     @Unique

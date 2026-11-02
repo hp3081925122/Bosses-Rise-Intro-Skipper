@@ -98,13 +98,6 @@ public abstract class UnderworldKnightEntityMixin {
         }
     }
 
-    @Inject(method = "lambda$tick$4", at = @At("HEAD"), cancellable = true, remap = false)
-    private static void bossesRiseIntroSkipper$skipIntroPlayerVariables(Player player, CallbackInfo ci) {
-        if (Config.shouldSkipKnightCinematics()) {
-            ci.cancel();
-        }
-    }
-
     @Inject(method = "isCinematic", at = @At("HEAD"), cancellable = true, remap = false)
     private void bossesRiseIntroSkipper$disableCinematicFlag(CallbackInfoReturnable<Boolean> cir) {
         if (Config.shouldSkipKnightCinematics()) {
