@@ -1,38 +1,20 @@
 package org.hp.bosses_rise_intro_skipper;
 
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
+@Mod.EventBusSubscriber(modid="bosses_rise_intro_skipper", bus=Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-
-    private static final ModConfigSpec.BooleanValue SKIP_BOSS_INTRO_ANIMATIONS = BUILDER
-            .comment("跳过 Bosses Rise Boss 过场动画的总开关。")
-            .define("skipBossIntroAnimations", true);
-
-    private static final ModConfigSpec.BooleanValue SKIP_YETI_INTRO = BUILDER
-            .comment("跳过斯科尔，霜冻雪怪的入场、激怒转阶段和死亡动画。")
-            .define("skipYetiIntro", true);
-
-    private static final ModConfigSpec.BooleanValue SKIP_DRAGON_INTRO = BUILDER
-            .comment("跳过阿什洛德，炼狱飞龙的入场、转阶段和死亡动画。")
-            .define("skipDragonIntro", true);
-
-    private static final ModConfigSpec.BooleanValue SKIP_KNIGHT_INTRO = BUILDER
-            .comment("跳过赫尔瓦，冥界骑士的入场、假死、复活和最终死亡过场。")
-            .define("skipKnightIntro", true);
-
-    private static final ModConfigSpec.BooleanValue SKIP_SANDWORM_INTRO = BUILDER
-            .comment("跳过斯洛克，巨型沙虫的入场和死亡过场。")
-            .define("skipSandwormIntro", true);
-
-    private static final ModConfigSpec.BooleanValue SKIP_KRAKEN_INTRO = BUILDER
-            .comment("跳过 Nerakyss, The Kraken 的入场和二阶段过场。")
-            .define("skipKrakenIntro", true);
-
-    public static final ModConfigSpec SPEC = BUILDER.build();
-
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    private static final ForgeConfigSpec.BooleanValue SKIP_BOSS_INTRO_ANIMATIONS = BUILDER.comment("\u8df3\u8fc7 Bosses Rise Boss \u8fc7\u573a\u52a8\u753b\u7684\u603b\u5f00\u5173\u3002").define("skipBossIntroAnimations", true);
+    private static final ForgeConfigSpec.BooleanValue SKIP_YETI_INTRO = BUILDER.comment("\u8df3\u8fc7\u65af\u79d1\u5c14\uff0c\u971c\u51bb\u96ea\u602a\u7684\u5165\u573a\u3001\u6fc0\u6012\u8f6c\u9636\u6bb5\u548c\u6b7b\u4ea1\u52a8\u753b\u3002").define("skipYetiIntro", true);
+    private static final ForgeConfigSpec.BooleanValue SKIP_DRAGON_INTRO = BUILDER.comment("\u8df3\u8fc7\u963f\u4ec0\u6d1b\u5fb7\uff0c\u70bc\u72f1\u98de\u9f99\u7684\u5165\u573a\u3001\u8f6c\u9636\u6bb5\u548c\u6b7b\u4ea1\u52a8\u753b\u3002").define("skipDragonIntro", true);
+    private static final ForgeConfigSpec.BooleanValue SKIP_KNIGHT_INTRO = BUILDER.comment("\u8df3\u8fc7\u8d6b\u5c14\u74e6\uff0c\u51a5\u754c\u9a91\u58eb\u7684\u5165\u573a\u3001\u5047\u6b7b\u3001\u590d\u6d3b\u548c\u6700\u7ec8\u6b7b\u4ea1\u8fc7\u573a\u3002").define("skipKnightIntro", true);
+    private static final ForgeConfigSpec.BooleanValue SKIP_SANDWORM_INTRO = BUILDER.comment("\u8df3\u8fc7\u65af\u6d1b\u514b\uff0c\u5de8\u578b\u6c99\u866b\u7684\u5165\u573a\u548c\u6b7b\u4ea1\u8fc7\u573a\u3002").define("skipSandwormIntro", true);
+    private static final ForgeConfigSpec.BooleanValue SKIP_KRAKEN_INTRO = BUILDER.comment("\u8df3\u8fc7 Nerakyss, The Kraken \u7684\u5165\u573a\u548c\u4e8c\u9636\u6bb5\u8fc7\u573a\u3002").define("skipKrakenIntro", true);
+    public static final ForgeConfigSpec SPEC = BUILDER.build();
     public static boolean skipBossIntroAnimations;
     public static boolean skipYetiIntro;
     public static boolean skipDragonIntro;
@@ -45,7 +27,7 @@ public class Config {
     }
 
     public static boolean shouldSkipYetiCinematics() {
-        return shouldSkipYetiIntro();
+        return Config.shouldSkipYetiIntro();
     }
 
     public static boolean shouldSkipDragonIntro() {
@@ -53,7 +35,7 @@ public class Config {
     }
 
     public static boolean shouldSkipDragonCinematics() {
-        return shouldSkipDragonIntro();
+        return Config.shouldSkipDragonIntro();
     }
 
     public static boolean shouldSkipKnightIntro() {
@@ -61,7 +43,7 @@ public class Config {
     }
 
     public static boolean shouldSkipKnightCinematics() {
-        return shouldSkipKnightIntro();
+        return Config.shouldSkipKnightIntro();
     }
 
     public static boolean shouldSkipSandwormIntro() {
@@ -69,23 +51,23 @@ public class Config {
     }
 
     public static boolean shouldSkipSandwormCinematics() {
-        return shouldSkipSandwormIntro();
+        return Config.shouldSkipSandwormIntro();
     }
 
     public static boolean shouldSkipKrakenIntro() {
         return skipBossIntroAnimations && skipKrakenIntro;
     }
 
-    static void onLoad(final ModConfigEvent event) {
-        if (event.getConfig().getType() != ModConfig.Type.COMMON) {
+    @SubscribeEvent
+    static void onLoad(ModConfigEvent event) {
+        if (event.getConfig().getSpec() != SPEC) {
             return;
         }
-
-        skipBossIntroAnimations = SKIP_BOSS_INTRO_ANIMATIONS.get();
-        skipYetiIntro = SKIP_YETI_INTRO.get();
-        skipDragonIntro = SKIP_DRAGON_INTRO.get();
-        skipKnightIntro = SKIP_KNIGHT_INTRO.get();
-        skipSandwormIntro = SKIP_SANDWORM_INTRO.get();
-        skipKrakenIntro = SKIP_KRAKEN_INTRO.get();
+        skipBossIntroAnimations = (Boolean)SKIP_BOSS_INTRO_ANIMATIONS.get();
+        skipYetiIntro = (Boolean)SKIP_YETI_INTRO.get();
+        skipDragonIntro = (Boolean)SKIP_DRAGON_INTRO.get();
+        skipKnightIntro = (Boolean)SKIP_KNIGHT_INTRO.get();
+        skipSandwormIntro = (Boolean)SKIP_SANDWORM_INTRO.get();
+        skipKrakenIntro = (Boolean)SKIP_KRAKEN_INTRO.get();
     }
 }

@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "org/hp/bosses_rise_intro_skipper/mixin/UnderworldKnightEntityMixin": {
+      "tick": "Lnet/unusual/block_factorys_bosses/entity/boss/knight/UnderworldKnightEntity;m_8119_()V",
+      "hurt": "Lnet/unusual/block_factorys_bosses/entity/boss/knight/UnderworldKnightEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "org/hp/bosses_rise_intro_skipper/mixin/YetiEntityMixin": {
+      "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;)Z": "Lnet/minecraft/world/entity/LivingEntity;m_7292_(Lnet/minecraft/world/effect/MobEffectInstance;)Z",
+      "baseTick": "Lnet/unusual/block_factorys_bosses/entity/boss/yeti/YetiEntity;m_6075_()V",
+      "hurt": "Lnet/unusual/block_factorys_bosses/entity/boss/yeti/YetiEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    }
+  },
+  "data": {
+    "searge": {
+      "org/hp/bosses_rise_intro_skipper/mixin/UnderworldKnightEntityMixin": {
+        "tick": "Lnet/unusual/block_factorys_bosses/entity/boss/knight/UnderworldKnightEntity;m_8119_()V",
+        "hurt": "Lnet/unusual/block_factorys_bosses/entity/boss/knight/UnderworldKnightEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "org/hp/bosses_rise_intro_skipper/mixin/YetiEntityMixin": {
+        "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;)Z": "Lnet/minecraft/world/entity/LivingEntity;m_7292_(Lnet/minecraft/world/effect/MobEffectInstance;)Z",
+        "baseTick": "Lnet/unusual/block_factorys_bosses/entity/boss/yeti/YetiEntity;m_6075_()V",
+        "hurt": "Lnet/unusual/block_factorys_bosses/entity/boss/yeti/YetiEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      }
+    }
+  }
+}

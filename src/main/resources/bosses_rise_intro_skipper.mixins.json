@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "org.hp.bosses_rise_intro_skipper.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "bosses_rise_intro_skipper.refmap.json",
   "mixins": [
     "AbstractBossEntityAccessor",
