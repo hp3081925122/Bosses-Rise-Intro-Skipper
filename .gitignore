@@ -119,3 +119,6 @@ run/
 
 !libs/
 !libs/*.jar
+
+# 第三方依赖改用 CurseMaven，不提交 jar
+libs/

@@ -74,16 +74,18 @@ sourceSets.main.resources {
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
+    maven {
+        url = 'https://www.cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
     }
-    maven { url = 'https://www.cursemaven.com' }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("blank:block_factorys_bosses-2.1.2-forge:1.20.1")
-    implementation fg.deobf("blank:geckolib-forge-1.20.1:4.8.3")
+    implementation fg.deobf("curse.maven:bossesrise-1314084:8123166")
+    implementation fg.deobf("curse.maven:geckolib-388172:7553267")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
