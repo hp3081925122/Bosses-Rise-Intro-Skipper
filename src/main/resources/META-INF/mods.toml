@@ -17,7 +17,7 @@ license="All-Rights-Reserved"
 # The modid of the mod
 modId="bosses_rise_intro_skipper" #mandatory
 # The version number of the mod
-version="1.0" #mandatory
+version="1.0.1" #mandatory
 # A display name for the mod
 displayName="Bosses Rise Intro Skipper" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://docs.minecraftforge.net/en/latest/misc/updatechecker/
